@@ -1,19 +1,41 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabaseClient";
+
 export default function Home() {
+  const [posts, setPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function loadPosts() {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("*");
+
+      if (error) {
+        console.error(error);
+      } else {
+        setPosts(data || []);
+      }
+    }
+
+    loadPosts();
+  }, []);
+
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
-      <h1 className="text-4xl font-bold mb-6">
-        SolutionTeamX presents Bounty Board
-      </h1>
+    <main style={{ padding: "40px" }}>
+      <h1>Bounty Board</h1>
 
-      <p className="text-lg max-w-xl">
-        Bounty Board is a competitive problem-solving platform.
-        Post a problem. Submit solutions. Earn Bounty Credit (BC).
-        Rise through the tiers based on real contribution.
-      </p>
-
-      <p className="mt-6 text-sm text-gray-500">
-        MVP Launch – March 2026
-      </p>
+      {posts.length === 0 ? (
+        <p>No posts yet.</p>
+      ) : (
+        posts.map((post) => (
+          <div key={post.id} style={{ marginBottom: "20px" }}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+          </div>
+        ))
+      )}
     </main>
   );
 }
