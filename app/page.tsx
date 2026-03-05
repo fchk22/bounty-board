@@ -33,7 +33,6 @@ export default function Home() {
           <div key={q.id} style={{ marginBottom: "20px" }}>
             <h3>{q.title}</h3>
             <p>{q.description}</p>
-            <p><b>Bounty:</b> {q.bounty} BC</p>
           </div>
         ))
       )}
