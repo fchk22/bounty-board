@@ -4,35 +4,36 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 export default function Home() {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<any[]>([]);
 
   useEffect(() => {
-    async function loadPosts() {
+    async function loadQuestions() {
       const { data, error } = await supabase
-        .from("posts")
+        .from("questions")
         .select("*");
 
       if (error) {
         console.error(error);
       } else {
-        setPosts(data || []);
+        setQuestions(data || []);
       }
     }
 
-    loadPosts();
+    loadQuestions();
   }, []);
 
   return (
     <main style={{ padding: "40px" }}>
       <h1>Bounty Board</h1>
 
-      {posts.length === 0 ? (
-        <p>No posts yet.</p>
+      {questions.length === 0 ? (
+        <p>No questions yet.</p>
       ) : (
-        posts.map((post) => (
-          <div key={post.id} style={{ marginBottom: "20px" }}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
+        questions.map((q) => (
+          <div key={q.id} style={{ marginBottom: "20px" }}>
+            <h3>{q.title}</h3>
+            <p>{q.description}</p>
+            <p><b>Bounty:</b> {q.bounty} BC</p>
           </div>
         ))
       )}
