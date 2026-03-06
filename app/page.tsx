@@ -75,8 +75,17 @@ export default function Home() {
 
       <br /><br />
 
-      <button onClick={submitQuestion}>
-        Submit Question
+      <button onClick={submitQuestion}
+        style={{
+          padding: "10px 20px",
+          backgroundColor: "black",
+          color: "white",
+          border: "none",
+          cursor: "pointer",
+          marginTop: "10px"
+        }}
+      >
+        Submit Questionsss
       </button>
 
       <hr />
