@@ -96,11 +96,20 @@ export default function Home() {
         <p>No questions yet.</p>
       ) : (
         questions.map((q) => (
-          <div key={q.id} style={{ marginBottom: "20px" }}>
+          <a
+            key={q.id}
+            href={`/question/${q.id}`}
+            style={{
+              display: "block",
+              marginBottom: "20px",
+              textDecoration: "none",
+              color: "black"
+            }}
+          >
             <h3>{q.title}</h3>
             <p>{q.description}</p>
             <p><b>Bounty:</b> {q.bounty} BC</p>
-          </div>
+          </a>
         ))
       )}
     </main>
