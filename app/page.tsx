@@ -85,7 +85,7 @@ export default function Home() {
           marginTop: "10px"
         }}
       >
-        Submit Questionsss
+        Submit Question
       </button>
 
       <hr />
