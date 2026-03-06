@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <main style={{ padding: "40px" }}>
-      <h1>Bounty Board</h1>
+      <h1>Bounty Board v1.1</h1>
 
       <h2>Ask Question</h2>
 
